@@ -46,8 +46,29 @@ class LinkedList {
     return arr;
   }
 
+  removeAtIndex(index) {
+    if (index < 0 || index >= this.size) return;
+
+    if (index === 0) {
+      this.size--;
+      return (this.head = this.head.next);
+    }
+
+    let current = this.head;
+    let prev;
+    let count = 0;
+    while (count < index) {
+      prev = current;
+      current = current.next;
+      count++;
+    }
+
+    prev.next = current.next;
+    this.size--;
+  }
+
   addAtIndex(data, index) {
-    if (index < 0 || index > this.size) {
+    if (index < 0 || index >= this.size) {
       return "U CAnnot Dot that";
     }
 
@@ -85,6 +106,7 @@ lk.addFirst(1300);
 lk.addFirst(1400);
 
 lk.addAtIndex(230, 2);
+lk.removeAtIndex(3);
 
 console.log(lk.getData());
-console.log(lk);
+// console.log(lk);
